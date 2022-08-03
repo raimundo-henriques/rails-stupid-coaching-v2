@@ -2,7 +2,7 @@ class QuestionsController < ApplicationController
   def ask; end
 
   def answer
-    @question = params[:question]
+    @question = params[:question].nil? ? 'Hello' : params[:question]
     @answer = if @question.downcase == 'i am going to work'
                 'Great!'
               elsif @question[-1] == '?'

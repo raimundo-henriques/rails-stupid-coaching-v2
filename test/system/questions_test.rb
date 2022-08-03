@@ -12,6 +12,28 @@ class QuestionsTest < ApplicationSystemTestCase
     click_on "Ask"
 
     assert_text "I don't care, get dressed and go to work!"
-    take_screenshot
+  end
+
+  test "asking something yields a grumpy response from the coach" do
+    visit ask_url
+    fill_in "question", with: "Is this a question?"
+    click_on "Ask"
+
+    assert_text "Silly question, get dressed and go to work!"
+  end
+
+  test "Saying 'I am going to work' yields a nice response from the coach" do
+    visit ask_url
+    fill_in "question", with: "I am going to work"
+    click_on "Ask"
+
+    assert_text "Great!"
+  end
+
+  test "clicking Ask a new question takes us back to /ask" do
+    visit answer_url
+    click_link "Ask a new question"
+
+    assert_current_path "/ask"
   end
 end
